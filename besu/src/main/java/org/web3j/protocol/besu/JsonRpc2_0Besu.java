@@ -23,6 +23,7 @@ import org.web3j.protocol.besu.request.CreatePrivacyGroupRequest;
 import org.web3j.protocol.besu.response.BesuEthAccountsMapResponse;
 import org.web3j.protocol.besu.response.BesuFullDebugTraceResponse;
 import org.web3j.protocol.besu.response.privacy.PrivCreatePrivacyGroup;
+import org.web3j.protocol.besu.response.privacy.PrivDistributeRawTransaction;
 import org.web3j.protocol.besu.response.privacy.PrivFindPrivacyGroup;
 import org.web3j.protocol.besu.response.privacy.PrivGetPrivacyPrecompileAddress;
 import org.web3j.protocol.besu.response.privacy.PrivGetPrivateTransaction;
@@ -177,5 +178,15 @@ public class JsonRpc2_0Besu extends JsonRpc2_0Eea implements Besu {
                 Collections.singletonList(transactionHash),
                 web3jService,
                 PrivGetTransactionReceipt.class);
+    }
+
+    @Override
+    public Request<?, PrivDistributeRawTransaction> privDistributeRawTransaction(
+            final String signedPrivateTransactionData) {
+        return new Request<>(
+                "priv_distributeRawTransaction",
+                Collections.singletonList(signedPrivateTransactionData),
+                web3jService,
+                PrivDistributeRawTransaction.class);
     }
 }

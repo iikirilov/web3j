@@ -320,4 +320,19 @@ public class ResponseTest extends ResponseTester {
                 privGetTransactionReceipt.getTransactionReceipt().get(),
                 equalTo(transactionReceipt));
     }
+
+    @Test
+    public void testPrivDistributeRawTransaction() {
+
+        buildResponse(
+                "{\n"
+                        + "    \"jsonrpc\": \"2.0\",\n"
+                        + "    \"id\": 1,\n"
+                        + "    \"result\": \"0x123\"\n"
+                        + "}");
+
+        PrivDistributeRawTransaction privDistributeRawTransaction =
+                deserialiseResponse(PrivDistributeRawTransaction.class);
+        assertThat(privDistributeRawTransaction.getEnclaveKey(), is("0x123"));
+    }
 }

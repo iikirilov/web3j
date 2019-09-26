@@ -197,4 +197,13 @@ public class RequestTest extends RequestTester {
                 "{\"jsonrpc\":\"2.0\",\"method\":\"priv_getTransactionReceipt\","
                         + "\"params\":[\"0x123\"],\"id\":1}");
     }
+
+    @Test
+    public void testPrivDistributeRawTransaction() throws Exception {
+        web3j.privDistributeRawTransaction("0x123").send();
+
+        verifyResult(
+                "{\"jsonrpc\":\"2.0\",\"method\":\"priv_distributeRawTransaction\","
+                        + "\"params\":[\"0x123\"],\"id\":1}");
+    }
 }
